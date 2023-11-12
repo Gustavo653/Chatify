@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "Chatify": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "DatabaseConnection": "Server=localhost;Database=ChatifyAPI;User Id=postgres;Password=UL^q^84Vcm83fYdgGdZu;Integrated Security=false;",
+        "DOTNET_ENVIRONMENT": "development",
+        "Migrate": "true"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5007"
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:2634",
+      "sslPort": 44302
+    }
+  }
+}
