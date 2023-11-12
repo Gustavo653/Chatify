@@ -63,28 +63,9 @@ namespace Chatify.API
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddTransient<ITokenService, TokenService>();
-            builder.Services.AddTransient<ILegalParentService, LegalParentService>();
             builder.Services.AddTransient<IAccountService, AccountService>();
-            builder.Services.AddTransient<IStudentService, StudentService>();
-            builder.Services.AddTransient<IGraduationService, GraduationService>();
-            builder.Services.AddTransient<ITeacherService, TeacherService>();
-            builder.Services.AddTransient<IFieldOperationService, FieldOperationService>();
-            builder.Services.AddTransient<IFieldOperationTeacherService, FieldOperationTeacherService>();
-            builder.Services.AddTransient<IFieldOperationStudentService, FieldOperationStudentService>();
-            builder.Services.AddTransient<IRollCallService, RollCallService>();
-            builder.Services.AddTransient<IGoogleCloudStorageService, GoogleCloudStorageService>();
-            builder.Services.AddTransient<IAddressService, AddressService>();
 
-            builder.Services.AddTransient<ILegalParentRepository, LegalParentRepository>();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
-            builder.Services.AddTransient<IStudentRepository, StudentRepository>();
-            builder.Services.AddTransient<IGraduationRepository, GraduationRepository>();
-            builder.Services.AddTransient<IAddressRepository, AddressRepository>();
-            builder.Services.AddTransient<ITeacherRepository, TeacherRepository>();
-            builder.Services.AddTransient<IFieldOperationRepository, FieldOperationRepository>();
-            builder.Services.AddTransient<IFieldOperationTeacherRepository, FieldOperationTeacherRepository>();
-            builder.Services.AddTransient<IFieldOperationStudentRepository, FieldOperationStudentRepository>();
-            builder.Services.AddTransient<IRollCallRepository, RollCallRepository>();
 
             builder.Services.AddTransient<RoleManager<Role>>();
             builder.Services.AddTransient<UserManager<User>>();
@@ -231,9 +212,7 @@ namespace Chatify.API
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
             var roles = new List<string>() 
             {
-                RoleName.Student.ToString(),
-                RoleName.AssistantTeacher.ToString(), 
-                RoleName.Teacher.ToString(), 
+                RoleName.User.ToString(),
                 RoleName.Admin.ToString() 
             };
             foreach (var role in roles)
@@ -251,12 +230,9 @@ namespace Chatify.API
             var adminEmail = "admin@admin.com";
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
-            var teacher = new Teacher()
+            var teacher = new User()
             {
                 Name = "Admin",
-                CPF = "000.000.000-00",
-                Graduation = new Graduation() { Name = "Admin", Url = "Admin", Position = -1, GraduationType = GraduationType.Adult },
-                RG = "0.000.000",
                 Email = adminEmail,
                 UserName = "admin"
             };

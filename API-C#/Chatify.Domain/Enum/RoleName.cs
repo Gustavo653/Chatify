@@ -2,9 +2,7 @@
 {
     public enum RoleName
     {
-        Student,
-        AssistantTeacher,
-        Teacher,
+        User,
         Admin
     }
 }
