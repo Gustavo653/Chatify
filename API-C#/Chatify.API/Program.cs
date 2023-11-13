@@ -61,6 +61,11 @@ namespace Chatify.API
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            builder.Services.AddSignalR(x =>
+            {
+                x.EnableDetailedErrors = true;
+            });
+            
             builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddTransient<IAccountService, AccountService>();
 
@@ -189,11 +194,15 @@ namespace Chatify.API
             app.UseSwaggerUI();
             
             app.UseAuthentication();
-            app.UseAuthorization();
 
             app.MapControllers();
 
             app.MapHealthChecks("/health");
+            
+            app.UseRouting();           
+            app.UseAuthorization();
+            
+            app.MapHub<ChatHub>("chat");
 
             app.Use(async (context, next) =>
             {
