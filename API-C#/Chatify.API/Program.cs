@@ -11,7 +11,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Chatify.DataAccess;
 using Chatify.DataAccess.Interface;
-using Chatify.Domain;
 using Chatify.Domain.Enum;
 using Chatify.Domain.Identity;
 using Chatify.Persistence;
@@ -188,9 +187,7 @@ namespace Chatify.API
 
             app.UseSwagger();
             app.UseSwaggerUI();
-
-            app.UseHttpsRedirection();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
